@@ -10,3 +10,5 @@ python_heideltime/config_Heideltime.py
 
 
 heideltime-standalone/*
+
+*.original
