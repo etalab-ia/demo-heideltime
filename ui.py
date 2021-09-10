@@ -12,7 +12,7 @@ Quelle a été la profondeur des nappes chez moi, cette année ?
 st.sidebar.header("heideltime parameters")
 document_type = st.sidebar.selectbox("document type", ["NEWS", "NARRATIVES"])
 language = st.sidebar.selectbox("language", ["ENGLISH", "GERMAN", "FRENCH"], 2)
-interval_tagger = st.sidebar.checkbox("interval tagger")
+interval_tagger = st.sidebar.checkbox("interval tagger", True)
 document_time = st.sidebar.date_input("document time")
 
 
