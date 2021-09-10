@@ -24,14 +24,20 @@ heideltime_parser.set_document_time(document_time.strftime("%Y-%m-%d"))
 
 st.header("Input")
 
-input = st.text_input("Une question ?", default_input)
+input = st.text_area("Une question ?", default_input)
 
 st.write(f"> {input}")
 
 
 st.header("Result")
 
-result = heideltime_parser.parse(input)
+
+@st.cache
+def get_result(input):
+    return heideltime_parser.parse(input)
+
+
+result = get_result(input)
 
 st.subheader("Raw")
 st.write(
