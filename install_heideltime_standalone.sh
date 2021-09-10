@@ -12,7 +12,16 @@ cd heideltime-standalone/treetagger
 treetagger_dir="treeTaggerHome = "$(pwd)
 
 # download treetagger files
-wget --no-verbose https://www.cis.uni-muenchen.de/~schmid/tools/TreeTagger/data/tree-tagger-MacOSX-3.2.2.tar.gz
+UNAME=$(uname)
+
+if [ "$UNAME" == "Linux" ] ; then
+	wget --no-verbose https://www.cis.uni-muenchen.de/~schmid/tools/TreeTagger/data/tree-tagger-linux-3.2.4.tar.gz
+elif [ "$UNAME" == "Darwin" ] ; then
+	wget --no-verbose https://www.cis.uni-muenchen.de/~schmid/tools/TreeTagger/data/tree-tagger-MacOSX-3.2.3.tar.gz
+fi
+
+
+
 wget --no-verbose https://www.cis.uni-muenchen.de/~schmid/tools/TreeTagger/data/tagger-scripts.tar.gz 
 wget --no-verbose https://www.cis.uni-muenchen.de/~schmid/tools/TreeTagger/data/install-tagger.sh 
 wget --no-verbose https://www.cis.uni-muenchen.de/~schmid/tools/TreeTagger/data/german.par.gz 
@@ -41,15 +50,16 @@ heideltime_dir=$(pwd)
 # sed -i "s/\(considerTime *= *\).*/\1false/" config.props
 
 original_str="treeTaggerHome = SET ME IN CONFIG.PROPS! (e.g., /home/jannik/treetagger)"
-sed -i "s~$original_str~$treetagger_dir~" config.props
+sed -i'.original' -e "s~$original_str~$treetagger_dir~" config.props
 
 # alter config file for python_heideltime
 cd ../../python_heideltime
 rm config_Heideltime.py
 wget --no-verbose https://raw.githubusercontent.com/PhilipEHausner/python_heideltime/master/python_heideltime/config_Heideltime.py
 
-original_str="Heideltime_path = '/path/to/heideltime/'"
-replace_str="Heideltime_path = '$heideltime_dir'"
-sed -i "s~$original_str~$replace_str~" config_Heideltime.py
+original_str="/path/to/heideltime/"
+replace_str=$heideltime_dir
+sed -i'.original' -e "s~$original_str~$replace_str~" config_Heideltime.py
+
 
 echo "HeidelTime-standalone installed successfully. Config files altered."
