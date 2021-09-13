@@ -59,3 +59,10 @@ Which should result in the following output (with regard to your current date).
 ```
 streamlit run ui.py
 ```
+
+### Docker
+
+```
+docker build -t demo-heideltime .
+docker run --rm -p 8501:8501 demo-heideltime
+```
