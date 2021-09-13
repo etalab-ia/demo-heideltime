@@ -22,6 +22,9 @@ heideltime_parser.set_language(language)
 heideltime_parser.set_interval_tagger(interval_tagger)
 heideltime_parser.set_document_time(document_time.strftime("%Y-%m-%d"))
 
+st.title("Heideltime UI")
+
+
 st.header("Input")
 
 input = st.text_area("Une question ?", default_input)
