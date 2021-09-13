@@ -20,7 +20,7 @@ elif [ "$UNAME" == "Darwin" ] ; then
 	wget --no-verbose https://www.cis.uni-muenchen.de/~schmid/tools/TreeTagger/data/tree-tagger-MacOSX-3.2.3.tar.gz
 fi
 
-
+echo $UNAME
 
 wget --no-verbose https://www.cis.uni-muenchen.de/~schmid/tools/TreeTagger/data/tagger-scripts.tar.gz 
 wget --no-verbose https://www.cis.uni-muenchen.de/~schmid/tools/TreeTagger/data/install-tagger.sh 
