@@ -24,6 +24,11 @@ heideltime_parser.set_document_time(document_time.strftime("%Y-%m-%d"))
 
 st.title("Heideltime UI")
 
+st.write(
+    """
+[Heideltime](https://github.com/HeidelTime/heideltime) is a reference temporal tagger. This user interface allows to check its output.
+"""
+)
 
 st.header("Input")
 
@@ -43,11 +48,7 @@ def get_result(input):
 result = get_result(input)
 
 st.subheader("Raw")
-st.write(
-    f"""```
-{ result }
-```"""
-)
+st.code(result)
 
 
 st.subheader("Detected dates")
